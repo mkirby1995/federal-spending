@@ -7,7 +7,7 @@ from dash.dependencies import Input, Output
 
 # Imports from this application
 from app import app, server
-from Pages import index
+from Pages import index, revenue, spending, budget
 
 
 navbar = dbc.NavbarSimple(
@@ -15,6 +15,8 @@ navbar = dbc.NavbarSimple(
     brand_href='/',
     children=[
         dbc.NavItem(dcc.Link('Revenues', href='/revenue', className='nav-link')),
+        dbc.NavItem(dcc.Link('Spending', href='/spending', className='nav-link')),
+        dbc.NavItem(dcc.Link('Budget', href='/budget', className='nav-link')),
     ],
     sticky='top',
     color='light',
@@ -56,7 +58,11 @@ def display_page(pathname):
     if pathname == '/':
         return index.layout
     elif pathname == '/revenue':
-        return calculate_dv.layout
+        return revenue.layout
+    elif pathname == '/spending':
+        return spending.layout
+    elif pathname == '/budget':
+        return budget.layout
     else:
         return dcc.Markdown('## Page not found')
 
